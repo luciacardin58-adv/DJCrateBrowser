@@ -28,13 +28,23 @@ DJPlaylist class >> fromFile: aFileReference [
 
 { #category : 'instance creation' }
 DJPlaylist class >> named: aString [
-^  self new initNamed: aString 
+| pl |
+	
+	pl :=  self new.
+	pl setName: aString. 
+	^ pl
 ]
 
-{ #category : 'instance creation' }
-DJPlaylist >> initNamed: aString [
-name := aString .
-tracks := OrderedCollection new.
+{ #category : 'adding' }
+DJPlaylist >> addTrack: aDJTrackModel [
+
+tracks add: aDJTrackModel 
+]
+
+{ #category : 'initialization' }
+DJPlaylist >> initialize [
+   super initialize .
+	tracks := OrderedCollection new
 ]
 
 { #category : 'accessing' }
