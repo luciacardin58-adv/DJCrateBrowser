@@ -17,9 +17,56 @@ DJTrackModel class >> on: aFileInfo path: aPath [
 ^ self new initWith: aFileInfo path: aPath 
 ]
 
+{ #category : 'accessing' }
+DJTrackModel >> artist [
+
+	^ self hasMetadata
+		  ifTrue: [ fileInfo artist ]
+		  ifFalse: [ '' ]
+]
+
+{ #category : 'accessing' }
+DJTrackModel >> bpm [ 
+"BPM not calculated yet - return placeholder"
+^ '--'
+]
+
+{ #category : 'accessing' }
+DJTrackModel >> fileInfp [
+
+^ fileInfo 
+]
+
+{ #category : 'accessing' }
+DJTrackModel >> filePath [ 
+
+^ filePath 
+]
+
+{ #category : 'accessing' }
+DJTrackModel >> genre [ 
+^ self hasMetadata 
+ifTrue: [  fileInfo genre  ]
+ifFalse: [ '' ]
+]
+
+{ #category : 'testing' }
+DJTrackModel >> hasMetadata [ 
+
+^ (fileInfo notNil and: [ fileInfo title notNil ])
+]
+
 { #category : 'initialization' }
 DJTrackModel >> initWith: aFileInfo path: aPath [
 
 fileInfo := aFileInfo .
 filePath := aPath 
+]
+
+{ #category : 'accessing' }
+DJTrackModel >> title [
+
+	^ self hasMetadata 
+		  ifTrue: [ fileInfo title ]
+		  ifFalse: [ filePath basename ]
 ]
