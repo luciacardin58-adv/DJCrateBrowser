@@ -8,8 +8,9 @@ Class {
 		'filePath',
 		'fileInfo'
 	],
-	#category : 'DJCrateBrowser',
-	#package : 'DJCrateBrowser'
+	#category : 'DJCrateBrowser-Models',
+	#package : 'DJCrateBrowser',
+	#tag : 'Models'
 }
 
 { #category : 'initialization' }
@@ -56,7 +57,7 @@ DJTrackModel >> hasMetadata [
 ^ (fileInfo notNil and: [ fileInfo title notNil ])
 ]
 
-{ #category : 'initialization' }
+{ #category : 'instance creation' }
 DJTrackModel >> initWith: aFileInfo path: aPath [
 
 fileInfo := aFileInfo .
