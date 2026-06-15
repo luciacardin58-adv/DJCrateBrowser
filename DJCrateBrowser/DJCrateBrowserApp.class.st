@@ -5,9 +5,34 @@ Class {
 	#name : 'DJCrateBrowserApp',
 	#superclass : 'Object',
 	#instVars : [
-		'playlistManager'
+		'playlistManager',
+		'presenter'
 	],
-	#category : 'DJCrateBrowser-Application',
+	#category : 'DJCrateBrowser-Presenter',
 	#package : 'DJCrateBrowser',
-	#tag : 'Application'
+	#tag : 'Presenter'
 }
+
+{ #category : 'accessing' }
+DJCrateBrowserApp class >> start [ 
+^ self new run
+]
+
+{ #category : 'initialization' }
+DJCrateBrowserApp >> initialize [ 
+super initialize.
+playlistManager := DJPlaylistManager default 
+]
+
+{ #category : 'accessing' }
+DJCrateBrowserApp >> playlistManager [ 
+
+^ playlistManager 
+]
+
+{ #category : 'running' }
+DJCrateBrowserApp >> run [
+
+	presenter := DJCrateBrowserPresenter application: self.
+	presenter open
+]
