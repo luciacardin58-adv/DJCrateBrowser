@@ -3,7 +3,7 @@ Left panel (playlists top + folders bottom)
 "
 Class {
 	#name : 'DJLeftPanelPresenter',
-	#superclass : 'Object',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'playlistList',
 		'folderTree',

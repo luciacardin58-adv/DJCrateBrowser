@@ -3,7 +3,7 @@
 "
 Class {
 	#name : 'DJCrateBrowserApp',
-	#superclass : 'Object',
+	#superclass : 'SpApplication',
 	#instVars : [
 		'playlistManager',
 		'presenter'
