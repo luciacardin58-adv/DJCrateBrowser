@@ -1,5 +1,5 @@
 Class {
-	#name : 'DJTrackModelTest',
+	#name : 'DJTrackModelTests',
 	#superclass : 'TestCase',
 	#category : 'DJCrateBrowser-Tests',
 	#package : 'DJCrateBrowser',
@@ -7,28 +7,28 @@ Class {
 }
 
 { #category : 'tests' }
-DJTrackModelTest >> testArtistEmptyWhenNoFileInfo [ 
+DJTrackModelTests >> testArtistEmptyWhenNoFileInfo [ 
     | track |
     track := DJTrackModel on: nil path: '/music/track.wav' asFileReference.
     self assert: track artist equals: ''
 ]
 
 { #category : 'tests' }
-DJTrackModelTest >> testBpmIsPlaceholderWhenUnknown [ 
+DJTrackModelTests >> testBpmIsPlaceholderWhenUnknown [ 
     | track |
     track := DJTrackModel on: nil path: '/music/track.wav' asFileReference.
     self assert: track bpm equals: '--'
 ]
 
 { #category : 'tests' }
-DJTrackModelTest >> testGenreEmptyWhenNoFileInfo [ 
+DJTrackModelTests >> testGenreEmptyWhenNoFileInfo [ 
     | track |
     track := DJTrackModel on: nil path: '/music/track.wav' asFileReference.
     self assert: track genre equals: ''
 ]
 
 { #category : 'tests' }
-DJTrackModelTest >> testTitleFallsBackToFilename [ 
+DJTrackModelTests >> testTitleFallsBackToFilename [ 
     "When no fileInfo, title returns the file basename"
     | track |
     track := DJTrackModel on: nil path: '/music/techno/phausto-TechnoTrack.wav' asFileReference.

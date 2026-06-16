@@ -19,7 +19,7 @@ DJPlaylist class >> fromFile: aFileReference [
     playlist := self named: aFileReference basenameWithoutExtension.
     lines := aFileReference readStream contents lines.
     lines do: [ :line |
-        (line isEmpty or: [ line startsWith: '#' ]) ifFalse: [
+        (line isEmpty or: [ line beginsWith: '#' ]) ifFalse: [
             | ref |
             ref := line asFileReference.
             playlist addTrack: (DJTrackModel on: nil path: ref) ] ].
@@ -69,6 +69,11 @@ DJPlaylist >> saveTo: aFileReference [
 						cr;
 						nextPutAll: track filePath fullName;
 						cr ] ]
+]
+
+{ #category : 'initialization' }
+DJPlaylist >> setName: aString [ 
+name := aString 
 ]
 
 { #category : 'accessing' }
