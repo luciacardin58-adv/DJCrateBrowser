@@ -1,5 +1,5 @@
 Class {
-	#name : 'DJPlayListsTests',
+	#name : 'DJPlayListsTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'playlist'
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : 'running' }
-DJPlayListsTests >> setUp [
+DJPlayListsTest >> setUp [
 
 	super setUp.
 
@@ -18,7 +18,7 @@ DJPlayListsTests >> setUp [
 ]
 
 { #category : 'tests' }
-DJPlayListsTests >> testAddTrack [ 
+DJPlayListsTest >> testAddTrack [ 
     | track |
     track := DJTrackModel on: nil path: '/music/track.wav' asFileReference.
     playlist addTrack: track.
@@ -26,17 +26,17 @@ DJPlayListsTests >> testAddTrack [
 ]
 
 { #category : 'tests' }
-DJPlayListsTests >> testNewPlaylistIsEmpty [ 
+DJPlayListsTest >> testNewPlaylistIsEmpty [ 
     self assert: playlist tracks isEmpty
 ]
 
 { #category : 'tests' }
-DJPlayListsTests >> testPlaylistHasName [ 
+DJPlayListsTest >> testPlaylistHasName [ 
     self assert: playlist name equals: 'TestSet'
 ]
 
 { #category : 'tests' }
-DJPlayListsTests >> testSaveAndReload [ 
+DJPlayListsTest >> testSaveAndReload [ 
     "Save a playlist with one track, reload it, check track path survives round-trip"
     | track tempFile reloaded |
     track := DJTrackModel on: nil path: '/music/house/track.wav' asFileReference.
@@ -54,7 +54,7 @@ DJPlayListsTests >> testSaveAndReload [
 ]
 
 { #category : 'tests' }
-DJPlayListsTests >> testSaveProducesM3UHeader [ 
+DJPlayListsTest >> testSaveProducesM3UHeader [ 
     | tempFile content |
     tempFile := FileLocator temp asFileReference / 'header-test.m3u'.
     playlist saveTo: tempFile.

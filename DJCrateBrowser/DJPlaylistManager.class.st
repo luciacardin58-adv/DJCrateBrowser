@@ -14,7 +14,7 @@ Class {
 
 { #category : 'accessing' }
 DJPlaylistManager class >> default [ 
-^ self new init.
+^ self new .
 ]
 
 { #category : 'accessing' }

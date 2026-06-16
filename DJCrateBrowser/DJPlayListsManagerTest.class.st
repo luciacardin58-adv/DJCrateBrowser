@@ -1,5 +1,5 @@
 Class {
-	#name : 'DJPlayListsManagerTests',
+	#name : 'DJPlayListsManagerTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'manager',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : 'running' }
-DJPlayListsManagerTests >> setUp [
+DJPlayListsManagerTest >> setUp [
 
 	super setUp.
 
@@ -24,19 +24,19 @@ DJPlayListsManagerTests >> setUp [
 ]
 
 { #category : 'running' }
-DJPlayListsManagerTests >> tearDown [ 
+DJPlayListsManagerTest >> tearDown [ 
     tempFolder deleteAll.
 ]
 
 { #category : 'tests' }
-DJPlayListsManagerTests >> testAvailablePlaylistsAfterCreate [ 
+DJPlayListsManagerTest >> testAvailablePlaylistsAfterCreate [ 
     manager createPlaylistNamed: 'WarmUp'.
     manager createPlaylistNamed: 'MainSet'.
     self assert: manager availablePlaylists size equals: 2.
 ]
 
 { #category : 'tests' }
-DJPlayListsManagerTests >> testCreatePlaylist [ 
+DJPlayListsManagerTest >> testCreatePlaylist [ 
     | pl |
     pl := manager createPlaylistNamed: 'DiscoNight'.
     self assert: pl name equals: 'DiscoNight'.
@@ -44,11 +44,11 @@ DJPlayListsManagerTests >> testCreatePlaylist [
 ]
 
 { #category : 'tests' }
-DJPlayListsManagerTests >> testFolderIsCreatedOnInit [ 
+DJPlayListsManagerTest >> testFolderIsCreatedOnInit [ 
     self assert: tempFolder exists
 ]
 
 { #category : 'tests' }
-DJPlayListsManagerTests >> testNoPlaylistsInitially [ 
+DJPlayListsManagerTest >> testNoPlaylistsInitially [ 
     self assert: manager availablePlaylists isEmpty
 ]

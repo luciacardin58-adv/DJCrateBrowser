@@ -1,5 +1,5 @@
 Class {
-	#name : 'DJTrackTablePresenterTests',
+	#name : 'DJTrackTablePresenterTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'presenter'
@@ -10,14 +10,14 @@ Class {
 }
 
 { #category : 'running' }
-DJTrackTablePresenterTests >> setUp [
+DJTrackTablePresenterTest >> setUp [
 	super setUp.
 
 	 presenter := DJTrackTablePresenter new.
 ]
 
 { #category : 'tests' }
-DJTrackTablePresenterTests >> testAddTrack [ 
+DJTrackTablePresenterTest >> testAddTrack [ 
     | track |
     track := DJTrackModel on: nil path: '/music/b.aiff' asFileReference.
     presenter addTrack: track.
@@ -25,12 +25,12 @@ DJTrackTablePresenterTests >> testAddTrack [
 ]
 
 { #category : 'tests' }
-DJTrackTablePresenterTests >> testInitiallyEmpty [ 
+DJTrackTablePresenterTest >> testInitiallyEmpty [ 
     self assert: presenter tracks isEmpty
 ]
 
 { #category : 'tests' }
-DJTrackTablePresenterTests >> testShowTracks [ 
+DJTrackTablePresenterTest >> testShowTracks [ 
     | tracks |
     tracks := OrderedCollection with:
         (DJTrackModel on: nil path: '/music/a.wav' asFileReference).
