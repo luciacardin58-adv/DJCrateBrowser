@@ -43,3 +43,8 @@ DJPlaylistManager >> initialize [
 DJPlaylistManager >> playlistsFolder [ 
 ^ playlistsFolder 
 ]
+
+{ #category : 'accessing' }
+DJPlaylistManager >> playlistsFolder: aFileReference [ 
+    playlistsFolder := aFileReference
+]
