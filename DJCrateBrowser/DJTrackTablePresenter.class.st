@@ -25,6 +25,14 @@ DJTrackTablePresenter >> addTrack: aDJTrackModel [
     table items: (table items copyWith: aDJTrackModel)
 ]
 
+{ #category : 'adding' }
+DJTrackTablePresenter >> addTracksForFiles: aCollectionOfFileReferences [ 
+    | newTracks |
+    newTracks := aCollectionOfFileReferences collect: [ :fileRef |
+        DJTrackModel on: nil path: fileRef ].
+    newTracks do: [ :track | self addTrack: track ].
+]
+
 { #category : 'layout' }
 DJTrackTablePresenter >> defaultLayout [ 
     ^ SpBoxLayout newTopToBottom
@@ -52,6 +60,14 @@ DJTrackTablePresenter >> initializePresenters [
 		acceptDrop: [ :transfer | self acceptDrop: transfer ]
 ]
 
+{ #category : 'visiting' }
+DJTrackTablePresenter >> isValidDrop: aCollectionOfFileReferences [ 
+    "Accept the drop only if every dragged item is an audio file (not a directory)"
+    ^ aCollectionOfFileReferences allSatisfy: [ :each |
+        each isDirectory not and: [
+            #('wav' 'aiff' 'aif') includes: each extension asLowercase ] ]
+]
+
 { #category : 'showing' }
 DJTrackTablePresenter >> showTracks: aCollection [ 
     table items: aCollection asOrderedCollection
@@ -65,6 +81,5 @@ DJTrackTablePresenter >> tracks [
 { #category : 'visiting' }
 DJTrackTablePresenter >> wantsDrop: aTransfer [
 
-
-	^ true
+^ self isValidDrop: aTransfer passenger
 ]
