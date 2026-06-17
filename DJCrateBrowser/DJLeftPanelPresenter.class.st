@@ -17,8 +17,10 @@ Class {
 
 { #category : 'properties' }
 DJLeftPanelPresenter >> childrenOf: aNode [ 
+    | ref |
     aNode isDirectory ifFalse: [ ^ #() ].
-    ^ (aNode entries select: [ :e |
+    ref := aNode asFileReference.
+    ^ (ref entries select: [ :e |
         e isDirectory or: [
             #('wav' 'aiff' 'aif') includes: e extension asLowercase ] ])
         asSortedCollection: [ :a :b | a basename < b basename ]
@@ -51,10 +53,12 @@ DJLeftPanelPresenter >> initializePresenters [
 
 	playlistList := self newList.
 	playlistList display: [ :pl | pl name ].
-	 folderTree := self newTree.
-    folderTree
-        children: [ :node | self childrenOf: node ];
-        display: [ :node | node basename ]
+	folderTree := self newTree.
+	folderTree
+		children: [ :node | self childrenOf: node ];
+		display: [ :node | node basename ];
+		dragEnabled: true.
+	
 ]
 
 { #category : 'API - loading' }

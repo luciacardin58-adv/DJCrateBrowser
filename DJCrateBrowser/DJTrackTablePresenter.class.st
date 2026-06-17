@@ -12,6 +12,14 @@ Class {
 	#tag : 'Presenter'
 }
 
+{ #category : 'visiting' }
+DJTrackTablePresenter >> acceptDrop: aTransfer [ 
+    | newTracks |
+    newTracks := aTransfer passenger collect: [ :fileRef |
+        DJTrackModel on: nil path: fileRef ].
+    newTracks do: [ :track | self addTrack: track ]
+]
+
 { #category : 'adding' }
 DJTrackTablePresenter >> addTrack: aDJTrackModel [ 
     table items: (table items copyWith: aDJTrackModel)
@@ -26,14 +34,22 @@ yourself
 ]
 
 { #category : 'initialization' }
-DJTrackTablePresenter >> initializePresenters [ 
-    table := self newTable.
-    table
-        addColumn: (SpStringTableColumn title: 'Title'  evaluated: [ :t | t title  ]);
-        addColumn: (SpStringTableColumn title: 'Artist' evaluated: [ :t | t artist ]);
-        addColumn: (SpStringTableColumn title: 'Genre'  evaluated: [ :t | t genre  ]);
-        addColumn: (SpStringTableColumn title: 'BPM'    evaluated: [ :t | t bpm    ]);
-beResizable 
+DJTrackTablePresenter >> initializePresenters [
+
+	table := self newTable.
+	table
+		addColumn:
+			(SpStringTableColumn title: 'Title' evaluated: [ :t | t title ]);
+		addColumn:
+			(SpStringTableColumn title: 'Artist' evaluated: [ :t | t artist ]);
+		addColumn:
+			(SpStringTableColumn title: 'Genre' evaluated: [ :t | t genre ]);
+		addColumn:
+			(SpStringTableColumn title: 'BPM' evaluated: [ :t | t bpm ]);
+		beResizable;
+		dropEnabled: true;
+		wantsDrop: [ :transfer | self wantsDrop: transfer ];
+		acceptDrop: [ :transfer | self acceptDrop: transfer ]
 ]
 
 { #category : 'showing' }
@@ -44,4 +60,11 @@ DJTrackTablePresenter >> showTracks: aCollection [
 { #category : 'accessing' }
 DJTrackTablePresenter >> tracks [ 
 ^ table items
+]
+
+{ #category : 'visiting' }
+DJTrackTablePresenter >> wantsDrop: aTransfer [
+
+
+	^ true
 ]
