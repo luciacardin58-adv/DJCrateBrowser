@@ -8,9 +8,9 @@ Class {
 		'leftPanel',
 		'trackTable'
 	],
-	#category : 'DJCrateBrowser-Application',
+	#category : 'DJCrateBrowser-Presenter',
 	#package : 'DJCrateBrowser',
-	#tag : 'Application'
+	#tag : 'Presenter'
 }
 
 { #category : 'initialization' }
@@ -22,12 +22,14 @@ DJCrateBrowserPresenter >> connectPresenters [
 ]
 
 { #category : 'layout' }
-DJCrateBrowserPresenter >> defaultLayout [ 
-    ^ SpPanedLayout newLeftToRight
-        positionOfSlider: 25;
-        add: leftPanel;
-        add: trackTable;
-        yourself
+DJCrateBrowserPresenter >> defaultLayout [
+
+	
+	^ SpPanedLayout newLeftToRight
+		  add: leftPanel;
+		  add: trackTable;
+		  positionOfSlider: 200;
+		  yourself
 ]
 
 { #category : 'initialization' }
@@ -41,4 +43,10 @@ DJCrateBrowserPresenter >> initializeWindow: aWindow [
     aWindow
         title: 'DJCrateBrowser';
         initialExtent: 900 @ 600.
+]
+
+{ #category : 'accessing' }
+DJCrateBrowserPresenter >> leftPanel [ 
+
+^ leftPanel 
 ]

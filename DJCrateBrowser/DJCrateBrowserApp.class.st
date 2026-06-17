@@ -8,9 +8,9 @@ Class {
 		'playlistManager',
 		'presenter'
 	],
-	#category : 'DJCrateBrowser-Presenter',
+	#category : 'DJCrateBrowser-Application',
 	#package : 'DJCrateBrowser',
-	#tag : 'Presenter'
+	#tag : 'Application'
 }
 
 { #category : 'accessing' }
@@ -33,6 +33,6 @@ DJCrateBrowserApp >> playlistManager [
 { #category : 'running' }
 DJCrateBrowserApp >> run [
 
-	presenter := DJCrateBrowserPresenter application: self.
+	presenter := DJCrateBrowserPresenter new application: self.
 	presenter open
 ]
